@@ -224,8 +224,8 @@ filetype plugin indent off
 
 if has('vim_starting')
 	set runtimepath+=~/.vim/neobundle.vim/
-	call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
