@@ -249,12 +249,10 @@ NeoBundle 'scrooloose/nerdcommenter.git'
 NeoBundle 'ack.vim'
 NeoBundle 'h1mesuke/vim-alignta.git'
 NeoBundle 'netrw.vim'
-NeoBundle 'jelera/vim-javascript-syntax.git'
-NeoBundle 'gmcs.vim'
 NeoBundle 'colorsel.vim'
+NeoBundle 'tpope/vim-markdown.git'
 
 filetype plugin indent on
-
 
 "----------------------------------------------------
 " unite
@@ -285,7 +283,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "vim zen-coding
 "----------------------------------------------------
 let g:user_zen_settings = { 'indentation': "" }
-
+let g:user_zen_leader_key = '<c-t>'
 "----------------------------------------------------
 " neocomplcache 
 "----------------------------------------------------
@@ -354,3 +352,6 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+
+autocmd FileType css,scss,sass,html,markdown.javascript setlocal iskeyword& iskeyword+=-

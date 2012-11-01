@@ -1,6 +1,6 @@
-setlocal indentkeys=
-setlocal nosmartindent
-setlocal noautoindent
+setlocal indentkeys=<>
+setlocal smartindent
+setlocal autoindent
 setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
