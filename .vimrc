@@ -205,7 +205,7 @@ let s:cursor = getpos(".")
 %s/\s\+$//e
 call setpos(".", s:cursor)
 endfunction
-autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.php,*.rb,*.js,*.bat,*.py,*.cs call RTrim()
+autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.php,*.rb,*.js,*.bat,*.py,*.cs,*.pm call RTrim()
 
 
 "----------------------------------------------------
@@ -232,14 +232,14 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache.git'
-NeoBundle 'Shougo/neocomplcache-snippets-complete.git'
+NeoBundle 'Shougo/neosnippet.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'othree/html5.vim.git'
 NeoBundle 'xhtml.vim'
 NeoBundle 'hail2u/vim-css3-syntax.git'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/zencoding-vim', 'emmet'
 NeoBundle 'motemen/xslate-vim.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'gregsexton/gitv.git'
@@ -251,6 +251,7 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 NeoBundle 'netrw.vim'
 NeoBundle 'colorsel.vim'
 NeoBundle 'tpope/vim-markdown.git'
+NeoBundle 'thinca/vim-qfreplace.git'
 
 filetype plugin indent on
 
@@ -282,7 +283,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "----------------------------------------------------
 "vim zen-coding
 "----------------------------------------------------
-let g:user_zen_settings = { 'indentation': "" }
+"let g:user_zen_settings = { 'indentation': "" }
 let g:user_zen_leader_key = '<c-t>'
 "----------------------------------------------------
 " neocomplcache 
@@ -354,4 +355,4 @@ let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 
-autocmd FileType css,scss,sass,html,markdown.javascript setlocal iskeyword& iskeyword+=-
+autocmd FileType css,scss,sass,html,xslate,markdown.javascript setlocal iskeyword& iskeyword+=-
