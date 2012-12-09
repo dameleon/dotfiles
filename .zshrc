@@ -1,3 +1,7 @@
+autoload -U compinit
+compinit
+
+
 source ~/.bashrc
 zstyle ':completion:*' matcher-list ' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}''
 bindkey -v
