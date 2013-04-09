@@ -16,7 +16,7 @@ if has('gui_macvim')
 
 	" フォント設定
 	set guifontwide=Osaka:h12
-	set guifont=Osaka-Mono:h14
+	set guifont=Osaka-Mono:h13
 
 	" ウィンドウ設定
 	set lines=60 columns=150
