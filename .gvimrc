@@ -9,12 +9,14 @@ if has('gui_macvim')
 	"colorscheme oceanblack
 	colorscheme molokai
 
+    set noimdisableactivate
+
 	let g:hi_insert = 'highlight StatusLine guifg=white guibg=#860049 gui=none'
 
 
 	" フォント設定
-	set guifontwide=Osaka:h14
-	set guifont=Osaka-Mono:h16
+	set guifontwide=Osaka:h12
+	set guifont=Osaka-Mono:h14
 
 	" ウィンドウ設定
 	set lines=60 columns=150

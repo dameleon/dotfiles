@@ -155,8 +155,8 @@ set softtabstop=4
 " インデントの各段階に使われる空白の数
 set shiftwidth=4
 " タブを挿入するとき、代わりに空白を使わない
-set expandtab
-" set noexpandtab
+" set expandtab
+set noexpandtab
 set nojoinspaces
 
 "----------------------------------------------------
@@ -252,6 +252,10 @@ NeoBundle 'netrw.vim'
 NeoBundle 'colorsel.vim'
 NeoBundle 'tpope/vim-markdown.git'
 NeoBundle 'thinca/vim-qfreplace.git'
+NeoBundle 'teramako/jscomplete-vim'
+NeoBundle 'nono/vim-handlebars'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-localrc'
 
 filetype plugin indent on
 
@@ -354,5 +358,12 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-
 autocmd FileType css,scss,sass,html,xslate,markdown.javascript setlocal iskeyword& iskeyword+=-
+
+autocmd FileType javascript
+  \ :setl omnifunc=jscomplete#CompleteJS
+
+set guifont=Osaka_Mono_for_Powerline
+let g:Powerline_symbols = 'fancy'
+let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
+
