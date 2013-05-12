@@ -258,6 +258,7 @@ NeoBundle 'teramako/jscomplete-vim'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'thinca/vim-localrc'
+NeoBundle 'mattn/gist-vim'
 NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
 
@@ -371,3 +372,11 @@ set guifont=Osaka_Mono_for_Powerline
 let g:Powerline_symbols = 'fancy'
 let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
 
+autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
+
+
+" VimRef
+let g:ref_phpmanual_path = $HOME . '/.vim/refs/php-chunked-xhtml'
+
+
+autocmd FileType php set tags=$HOME/.vim/tags/codeigniter.tags,$HOME/.vim/tags/masami.tags
