@@ -72,6 +72,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 ### Prompt ###
 # プロンプトに色を付ける
 autoload -U colors; colors
+
 # 一般ユーザ時
 tmp_prompt="%{${fg[cyan]}%}%n%# %{${reset_color}%}"
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
@@ -97,13 +98,12 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
 
 ### Title (user@hostname) ###
 case "${TERM}" in
-kterm*|xterm*|)
+kterm*|xterm*)
   precmd() {
     echo -ne "\033]0;${USER}@${HOST%%.*}\007"
   }
   ;;
 esac
-
 
 # ------------------------------
 # Other Settings
@@ -121,10 +121,23 @@ PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
 ### Aliases ###
 alias v=vim
 
+precmd() {
+	settitle $HOST
+}
+
 function alc() {
   if [ $# != 0 ]; then
     w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +37
   else
     w3m "http://www.alc.co.jp/"
   fi
+}
+
+function settitle() {
+    printf "\033k$1\033\\"
+}
+
+function ssh() {
+	settitle "$*"
+	command ssh "$@"
 }

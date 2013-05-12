@@ -259,6 +259,7 @@ NeoBundle 'nono/vim-handlebars'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'myhere/vim-nodejs-complete.git'
+NeoBundle 'sudo.vim'
 
 filetype plugin indent on
 
