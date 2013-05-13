@@ -96,15 +96,6 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
 ;
 
-### Title (user@hostname) ###
-case "${TERM}" in
-kterm*|xterm*)
-  precmd() {
-    echo -ne "\033]0;${USER}@${HOST%%.*}\007"
-  }
-  ;;
-esac
-
 # ------------------------------
 # Other Settings
 # ------------------------------
@@ -112,6 +103,12 @@ esac
 ### version info ##
 autoload -Uz vcs_info
 precmd() {
+	case "${TERM}" in
+	kterm*|xterm*)
+	    echo -ne "\033]0;${USER}@${HOST%%.*}\007"
+	  ;;
+	esac
+	settitle $HOST
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     psvar[1]=$vcs_info_msg_0_
@@ -120,10 +117,6 @@ PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
 
 ### Aliases ###
 alias v=vim
-
-precmd() {
-	settitle $HOST
-}
 
 function alc() {
   if [ $# != 0 ]; then
