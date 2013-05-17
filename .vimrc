@@ -380,3 +380,5 @@ let g:ref_phpmanual_path = $HOME . '/.vim/refs/php-chunked-xhtml'
 
 
 autocmd FileType php set tags=$HOME/.vim/tags/codeigniter.tags,$HOME/.vim/tags/masami.tags
+
+au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
