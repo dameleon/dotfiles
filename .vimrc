@@ -261,6 +261,7 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
+NeoBundle 'rking/ag.vim.git'
 
 filetype plugin indent on
 
