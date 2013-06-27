@@ -1,4 +1,5 @@
 source ~/.bashrc
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # ------------------------------
 # General Settings
