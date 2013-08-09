@@ -207,7 +207,7 @@ let s:cursor = getpos(".")
 %s/\s\+$//e
 call setpos(".", s:cursor)
 endfunction
-autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.php,*.rb,*.js,*.bat,*.py,*.cs,*.pm call RTrim()
+autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs call RTrim()
 
 
 "----------------------------------------------------
@@ -262,6 +262,7 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
 NeoBundle 'rking/ag.vim.git'
+NeoBundle 'sleistner/vim-jshint.git'
 
 filetype plugin indent on
 
@@ -360,7 +361,7 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
@@ -373,12 +374,7 @@ set guifont=Osaka_Mono_for_Powerline
 let g:Powerline_symbols = 'fancy'
 let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
 
-autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
-
-
-" VimRef
-let g:ref_phpmanual_path = $HOME . '/.vim/refs/php-chunked-xhtml'
-
+"autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
 
 autocmd FileType php set tags=$HOME/.vim/tags/codeigniter.tags,$HOME/.vim/tags/masami.tags
 
