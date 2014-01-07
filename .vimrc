@@ -262,7 +262,7 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
 NeoBundle 'rking/ag.vim.git'
-NeoBundle 'sleistner/vim-jshint.git'
+NeoBundle 'leafgarland/typescript-vim'
 
 filetype plugin indent on
 
