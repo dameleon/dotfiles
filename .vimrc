@@ -40,6 +40,69 @@ inoremap <C-l> <Right>
 nnoremap x "_x
 
 "----------------------------------------------------
+" NeoVundle
+"----------------------------------------------------
+"Install script
+"#from vim-scripts
+"Bundle 'SCRIPT_NAME'
+"#from Github
+"Bundle 'USER_NAME/REPOSITORY_NAME'
+"#from other git repos
+"Bundle 'git:://REPOSITORY_URL'
+
+filetype off
+filetype plugin indent off
+
+if has('vim_starting')
+	set runtimepath+=~/.vim/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache.git'
+NeoBundle 'Shougo/neosnippet.git'
+NeoBundle 'tpope/vim-surround.git'
+NeoBundle 'thinca/vim-quickrun.git'
+NeoBundle 'othree/html5.vim.git'
+NeoBundle 'xhtml.vim'
+NeoBundle 'hail2u/vim-css3-syntax.git'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'mattn/zencoding-vim', 'emmet'
+NeoBundle 'motemen/xslate-vim.git'
+NeoBundle 'tpope/vim-fugitive.git'
+NeoBundle 'gregsexton/gitv.git'
+NeoBundle 'yuratomo/w3m.vim.git'
+NeoBundle 'git://gist.github.com/411828.git'
+NeoBundle 'scrooloose/nerdcommenter.git'
+NeoBundle 'ack.vim'
+NeoBundle 'h1mesuke/vim-alignta.git'
+NeoBundle 'netrw.vim'
+NeoBundle 'colorsel.vim'
+NeoBundle 'tpope/vim-markdown.git'
+NeoBundle 'thinca/vim-qfreplace.git'
+NeoBundle 'teramako/jscomplete-vim'
+NeoBundle 'nono/vim-handlebars'
+NeoBundle 'thinca/vim-localrc'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'myhere/vim-nodejs-complete.git'
+NeoBundle 'sudo.vim'
+NeoBundle 'rking/ag.vim.git'
+NeoBundle 'itchyny/lightline.vim.git'
+NeoBundle 'osyo-manga/vim-over'
+NeoBundle 'LeafCage/yankround.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'leafgarland/typescript-vim'
+
+filetype plugin indent on
+
+"----------------------------------------------------
 " バックアップ関係
 "----------------------------------------------------
 "  ファイルの上書きの前にバックアップを作る
@@ -73,11 +136,12 @@ set grepprg=ack\ -a
 "----------------------------------------------------
 " 表示関係()
 "----------------------------------------------------
+" シンタックスハイライトを有効にする
+syntax on
 " color number
 let &t_Co=256
 " ColorScheme
 colorscheme molokai
-"colorscheme oceanblack256
 " タイトルをウインドウ枠に表示する
 set title
 " 行番号を表示する
@@ -96,8 +160,6 @@ set showmatch
 set matchtime=2
 " 強調する括弧のパターン
 set matchpairs=(:),{:},[:],<:>
-" シンタックスハイライトを有効にする
-syntax on
 " 検索結果文字列のハイライトを有効にする
 set hlsearch
 " コマンドライン補完を拡張モードにする
@@ -157,8 +219,7 @@ set softtabstop=4
 " インデントの各段階に使われる空白の数
 set shiftwidth=4
 " タブを挿入するとき、代わりに空白を使わない
-" set expandtab
-set noexpandtab
+set expandtab
 set nojoinspaces
 
 "----------------------------------------------------
@@ -168,9 +229,9 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 " □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+"if exists('&ambiwidth')
+"  set ambiwidth=double
+"endif
 
 " EUC-JP
 " nmap ,ee :e ++enc=euc-jp<CR>
@@ -208,63 +269,6 @@ let s:cursor = getpos(".")
 call setpos(".", s:cursor)
 endfunction
 autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs call RTrim()
-
-
-"----------------------------------------------------
-" NeoVundle
-"----------------------------------------------------
-"Install script
-"#from vim-scripts
-"Bundle 'SCRIPT_NAME'
-"#from Github
-"Bundle 'USER_NAME/REPOSITORY_NAME'
-"#from other git repos
-"Bundle 'git:://REPOSITORY_URL'
-
-filetype off
-filetype plugin indent off
-
-if has('vim_starting')
-	set runtimepath+=~/.vim/neobundle.vim/
-endif
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache.git'
-NeoBundle 'Shougo/neosnippet.git'
-NeoBundle 'tpope/vim-surround.git'
-NeoBundle 'thinca/vim-quickrun.git'
-NeoBundle 'othree/html5.vim.git'
-NeoBundle 'xhtml.vim'
-NeoBundle 'hail2u/vim-css3-syntax.git'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/zencoding-vim', 'emmet'
-NeoBundle 'motemen/xslate-vim.git'
-NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'gregsexton/gitv.git'
-NeoBundle 'yuratomo/w3m.vim.git'
-NeoBundle 'git://gist.github.com/411828.git'
-NeoBundle 'scrooloose/nerdcommenter.git'
-NeoBundle 'ack.vim'
-NeoBundle 'h1mesuke/vim-alignta.git'
-NeoBundle 'netrw.vim'
-NeoBundle 'colorsel.vim'
-NeoBundle 'tpope/vim-markdown.git'
-NeoBundle 'thinca/vim-qfreplace.git'
-NeoBundle 'teramako/jscomplete-vim'
-NeoBundle 'nono/vim-handlebars'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'thinca/vim-localrc'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'myhere/vim-nodejs-complete.git'
-NeoBundle 'sudo.vim'
-NeoBundle 'rking/ag.vim.git'
-NeoBundle 'leafgarland/typescript-vim'
-
-filetype plugin indent on
 
 "----------------------------------------------------
 " unite
@@ -370,8 +374,9 @@ autocmd FileType css,scss,sass,html,xslate,markdown.javascript setlocal iskeywor
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
 
-set guifont=Osaka_Mono_for_Powerline
-let g:Powerline_symbols = 'fancy'
+"set guifont=Osaka_Mono_for_Powerline
+"let g:Powerline_symbols = 'fancy'
+
 let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
 
 "autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
@@ -379,3 +384,81 @@ let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
 autocmd FileType php set tags=$HOME/.vim/tags/codeigniter.tags,$HOME/.vim/tags/masami.tags
 
 au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
+
+""" lightline
+let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'filename' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'MyFugitive',
+    \   'readonly': 'MyReadonly',
+    \   'modified': 'MyModified',
+    \   'filename': 'MyFilename'
+    \ },
+    \ 'separator': { 'left': '⮀', 'right': '⮂' },
+    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+	\ }
+	
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "⭤"
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFugitive()
+  return exists('*fugitive#head') && strlen(fugitive#head()) ? '⭠ '.fugitive#head() : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%t') ? expand('%t') : '[No Name]') .
+       \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+
+""" ENDOF: lightline
+
+:source $VIMRUNTIME/macros/matchit.vim
+
+" over.vim {{{
+" over.vimの起動
+nnoremap <silent> <Leader>m :OverCommandLine<CR>
+
+" カーソル下の単語をハイライト付きで置換
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+
+" コピーした文字列をハイライト付きで置換
+nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+" }}}"
+
+" yankround.vim {{{
+" キーマップ
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+" 履歴取得数
+let g:yankround_max_history = 50
+"履歴一覧(kien/ctrlp.vim)
+nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+" }}}"""
