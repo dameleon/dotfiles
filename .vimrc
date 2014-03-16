@@ -234,11 +234,11 @@ set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 "endif
 
 " EUC-JP
-" nmap ,ee :e ++enc=euc-jp<CR>
+nmap ,ee :e ++enc=euc-jp<CR>
 " " SJIS
-" nmap ,es :e ++enc=cp932<CR>
+nmap ,es :e ++enc=cp932<CR>
 " " JIS
-" nmap ,ej :e ++enc=iso-2022-jp<CR>
+nmap ,ej :e ++enc=iso-2022-jp<CR>
 " " UTF-8
 nmap ,eu :e ++enc=utf-8<CR>
 
@@ -356,6 +356,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -369,19 +370,9 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-autocmd FileType css,scss,sass,html,xslate,markdown.javascript setlocal iskeyword& iskeyword+=-
-
-autocmd FileType javascript
-  \ :setl omnifunc=jscomplete#CompleteJS
-
-"set guifont=Osaka_Mono_for_Powerline
-"let g:Powerline_symbols = 'fancy'
+autocmd FileType css,scss,sass,html,xslate,markdown,javascript setlocal iskeyword& iskeyword+=-
 
 let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
-
-"autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
-
-autocmd FileType php set tags=$HOME/.vim/tags/codeigniter.tags,$HOME/.vim/tags/masami.tags
 
 au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
 
@@ -439,7 +430,7 @@ endfunction
 
 :source $VIMRUNTIME/macros/matchit.vim
 
-" over.vim {{{
+" over.vim
 " over.vimの起動
 nnoremap <silent> <Leader>m :OverCommandLine<CR>
 
@@ -449,9 +440,7 @@ nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 " コピーした文字列をハイライト付きで置換
 nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-" }}}"
-
-" yankround.vim {{{
+" yankround.vim
 " キーマップ
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
@@ -461,4 +450,3 @@ nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
 "履歴一覧(kien/ctrlp.vim)
 nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
-" }}}"""
