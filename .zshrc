@@ -1,6 +1,3 @@
-source ~/.bashrc
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 # ------------------------------
 # General Settings
 # ------------------------------
@@ -9,7 +6,7 @@ export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 
-bindkey -v              # キーバインドをviモードに設定
+bindkey -v               # キーバインドをviモードに設定
 
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する 
@@ -119,6 +116,8 @@ PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
 ### Aliases ###
 alias v=vim
 
+
+### Functions ###
 function alc() {
   if [ $# != 0 ]; then
     w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +37

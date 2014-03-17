@@ -53,8 +53,10 @@ nnoremap x "_x
 filetype off
 filetype plugin indent off
 
+
 if has('vim_starting')
 	set runtimepath+=~/.vim/neobundle.vim/
+    set runtimepath+=$GOROOT.'/misc/vim'
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
@@ -64,6 +66,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache.git'
 NeoBundle 'Shougo/neosnippet.git'
+NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'othree/html5.vim.git'
@@ -99,6 +102,7 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Blackrush/vim-gocode'
 
 filetype plugin indent on
 
