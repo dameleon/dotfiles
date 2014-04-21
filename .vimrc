@@ -1,6 +1,8 @@
 "----------------------------------------------------
 " 基本的な設定
 "----------------------------------------------------
+" 新しいウィンドウを下に開く
+set splitbelow
 " viとの互換性をとらない(vimの独自拡張機能を使う為)
 set nocompatible
 " 基本的な設定
@@ -87,11 +89,10 @@ NeoBundle 'netrw.vim'
 NeoBundle 'colorsel.vim'
 NeoBundle 'tpope/vim-markdown.git'
 NeoBundle 'thinca/vim-qfreplace.git'
-NeoBundle 'teramako/jscomplete-vim'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/gist-vim'
-NeoBundle 'myhere/vim-nodejs-complete.git'
+" NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
 NeoBundle 'rking/ag.vim.git'
 NeoBundle 'itchyny/lightline.vim.git'
@@ -104,6 +105,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'marijnh/tern_for_vim'
 
 filetype plugin indent on
 
@@ -360,10 +362,11 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType typescript setlocal omnifunc=tern#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -374,6 +377,8 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+let g:neocomplcache_omni_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
 
 autocmd FileType css,scss,sass,html,xslate,markdown,javascript setlocal iskeyword& iskeyword+=-
 
