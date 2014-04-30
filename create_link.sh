@@ -11,4 +11,5 @@ done
 if [ ! -d ~/.vim ]
 then
     ln -s ~/.dotfiles/vimfiles ~/.vim
+    ln -s ./tern_plugin .vim/bundle/tern_for_vim/plugin
 fi

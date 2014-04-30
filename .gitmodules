@@ -1,3 +1,6 @@
 [submodule ".vim/neobundle.vim"]
 	path = .vim/neobundle.vim
 	url = git://github.com/Shougo/neobundle.vim.git
+[submodule "tern_plugin/AngularJS-tern-plugin"]
+	path = tern_plugin/AngularJS-tern-plugin
+	url = git@github.com:angular-ui/AngularJS-tern-plugin.git
