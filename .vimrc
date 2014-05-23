@@ -92,7 +92,6 @@ NeoBundle 'thinca/vim-qfreplace.git'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/gist-vim'
-" NeoBundle 'myhere/vim-nodejs-complete.git'
 NeoBundle 'sudo.vim'
 NeoBundle 'rking/ag.vim.git'
 NeoBundle 'itchyny/lightline.vim.git'
@@ -103,7 +102,6 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'marijnh/tern_for_vim'
 
@@ -123,6 +121,8 @@ set backupdir=~/Tmp/.vim/
 set directory=~/Tmp/.vim/
 " viminfoの保存場所
 set viminfo+=n~/Tmp/.vim/.viminfo
+" undo file の保存先を指定
+set undodir=~/Tmp/.vim/
 
 "----------------------------------------------------
 " 検索関係
@@ -366,7 +366,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType typescript setlocal omnifunc=tern#Complete
+autocmd FileType typescript setlocal omnifunc=TSScompleteFunc
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -380,9 +380,12 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 let g:neocomplcache_omni_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
 
-autocmd FileType css,scss,sass,html,xslate,markdown,javascript setlocal iskeyword& iskeyword+=-
+if !exists('g:neocomplete#sources#omni#input_patterns') 
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.typescript = '.*'
 
-let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th']
+autocmd FileType css,scss,sass,html,xslate,markdown,javascript,typescript setlocal iskeyword& iskeyword+=-
 
 au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
 
