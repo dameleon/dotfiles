@@ -104,6 +104,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'marijnh/tern_for_vim'
+NeoBundle 'https://github.com/clausreinke/typescript-tools'
 
 filetype plugin indent on
 
