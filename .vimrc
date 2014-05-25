@@ -1,49 +1,11 @@
 "----------------------------------------------------
-" 基本的な設定
+" Plugin & NeoVundle
 "----------------------------------------------------
-" 新しいウィンドウを下に開く
-set splitbelow
-" viとの互換性をとらない(vimの独自拡張機能を使う為)
-set nocompatible
-" 基本的な設定
-" 改行コードの自動認識
-set fileformats=unix,dos,mac
-" ビープ音を鳴らさない
-set vb t_vb=
-" バックスペースキーで削除できるものを指定
-" indent  : 行頭の空白
-" eol     : 改行
-" start   : 挿入モード開始位置より手前の文字
-set backspace=indent,eol,start
-" カーソルを行頭、行末で止まらないようにする
-set whichwrap=b,s,h,l,<,>,[,]
-"クリップボードへコピー
-set clipboard=unnamed
-"カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
-nnoremap j gj
-nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
-"パス関連のフィックス
-autocmd FileType html setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
-"カッコ補完
-inoremap () ()<LEFT>
-inoremap <> <><LEFT>
-inoremap [] []<LEFT>
-inoremap {} {}<LEFT>
-inoremap "" ""<LEFT>
-inoremap '' ''<LEFT>
-"インサート中の移動
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
 
-nnoremap x "_x
+" matchit を読み込む
+:source $VIMRUNTIME/macros/matchit.vim
 
-"----------------------------------------------------
-" NeoVundle
-"----------------------------------------------------
+" ## usage
 "Install script
 "#from vim-scripts
 "Bundle 'SCRIPT_NAME'
@@ -55,14 +17,19 @@ nnoremap x "_x
 filetype off
 filetype plugin indent off
 
-
 if has('vim_starting')
-	set runtimepath+=~/.vim/neobundle.vim/
-    set runtimepath+=$GOROOT.'/misc/vim'
+	set runtimepath+=~/.vim/neobundle.vim/,$GOROOT.'/misc/vim',$GOROOT.'/misc/vim/after'
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+    \     'windows' : 'make -f make_mingw32.mak',
+    \     'cygwin' : 'make -f make_cygwin.mak',
+    \     'mac' : 'make -f make_mac.mak',
+    \     'unix' : 'make -f make_unix.mak',
+    \    },
+    \ }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim'
@@ -76,11 +43,10 @@ NeoBundle 'othree/html5.vim.git'
 NeoBundle 'xhtml.vim'
 NeoBundle 'hail2u/vim-css3-syntax.git'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/zencoding-vim', 'emmet'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'motemen/xslate-vim.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'gregsexton/gitv.git'
-NeoBundle 'yuratomo/w3m.vim.git'
 NeoBundle 'git://gist.github.com/411828.git'
 NeoBundle 'scrooloose/nerdcommenter.git'
 NeoBundle 'ack.vim'
@@ -103,9 +69,52 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'marijnh/tern_for_vim'
+NeoBundle 'marijnh/tern_for_vim', {
+    \  'build' : 'npm install'    
+    \ }
+NeoBundle 'kana/vim-submode'
 
 filetype plugin indent on
+
+
+
+"----------------------------------------------------
+" 基本的な設定
+"----------------------------------------------------
+
+" viとの互換性をとらない(vimの独自拡張機能を使う為)
+set nocompatible
+" 新しいウィンドウを下に開く
+set splitbelow
+" 改行コードの自動認識
+set fileformats=unix,dos,mac
+" ビープ音を鳴らさない
+set vb t_vb=
+" バックスペースキーで削除できるものを指定
+" indent : 行頭の空白
+" eol    : 改行
+" start  : 挿入モード開始位置より手前の文字
+set backspace=indent,eol,start
+" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
+"クリップボードへコピー
+set clipboard=unnamed
+"カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+"パス関連のフィックス
+autocmd FileType html setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+"カッコ補完
+inoremap () ()<LEFT>
+inoremap <> <><LEFT>
+inoremap [] []<LEFT>
+inoremap {} {}<LEFT>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+
+
 
 "----------------------------------------------------
 " バックアップ関係
@@ -124,9 +133,12 @@ set viminfo+=n~/Tmp/.vim/.viminfo
 " undo file の保存先を指定
 set undodir=~/Tmp/.vim/
 
+
+
 "----------------------------------------------------
 " 検索関係
 "----------------------------------------------------
+
 " コマンド、検索パターンを100個まで履歴に残す
 set history=100
 " 検索の時に大文字小文字を区別しない
@@ -140,9 +152,12 @@ set noincsearch
 " 検索にはAckを使う
 set grepprg=ack\ -a
 
+
+
 "----------------------------------------------------
-" 表示関係()
+" 表示関係
 "----------------------------------------------------
+
 " シンタックスハイライトを有効にする
 syntax on
 " color number
@@ -213,9 +228,12 @@ function! s:GetHighlight(hi)
 	return hl
 endfunction
 
+
+
 "----------------------------------------------------
 " インデント
 "----------------------------------------------------
+
 " 自動インデントを有効にする
 set smartindent
 set autoindent
@@ -229,16 +247,15 @@ set shiftwidth=4
 set expandtab
 set nojoinspaces
 
+
+
 "----------------------------------------------------
 " エンコーディング関係 
 "----------------------------------------------------
+
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
-" □とか○の文字があってもカーソル位置がずれないようにする
-"if exists('&ambiwidth')
-"  set ambiwidth=double
-"endif
 
 " EUC-JP
 nmap ,ee :e ++enc=euc-jp<CR>
@@ -249,37 +266,44 @@ nmap ,ej :e ++enc=iso-2022-jp<CR>
 " " UTF-8
 nmap ,eu :e ++enc=utf-8<CR>
 
+
+
 "----------------------------------------------------
 " オートコマンド
 "----------------------------------------------------
-if has("autocmd")
-    " ファイルタイプ別インデント、プラグインを有効にする
-    "filetype plugin indent on
-    " カーソル位置を記憶する
-    autocmd BufReadPost *
-        \if line("'\"") > 0 && line("'\"") <= line("$") |
-        \  exe "normal g`\"" |
-        \endif
-endif
+
+" ファイルタイプ別インデント、プラグインを有効にする
+"filetype plugin indent on
+" カーソル位置を記憶する
+autocmd BufReadPost *
+    \if line("'\"") > 0 && line("'\"") <= line("$") |
+    \  exe "normal g`\"" |
+    \endif
+
+
 
 "----------------------------------------------------
 " その他
 "----------------------------------------------------
+
 " バッファを切替えてもundoの効力を失わない
 set hidden
 " 起動時のメッセージを表示しない
 set shortmess+=I
 " ゴミ削除
 function! RTrim()
-let s:cursor = getpos(".")
-%s/\s\+$//e
-call setpos(".", s:cursor)
+    let s:cursor = getpos(".")
+    %s/\s\+$//e
+    call setpos(".", s:cursor)
 endfunction
 autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs call RTrim()
 
+
+
 "----------------------------------------------------
-" unite
+" unite.vim
 "----------------------------------------------------
+
 "バッファ一覧
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file bookmark<CR>
 "レジスタ一覧
@@ -302,14 +326,11 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 
-"----------------------------------------------------
-"vim zen-coding
-"----------------------------------------------------
-"let g:user_zen_settings = { 'indentation': "" }
-let g:user_zen_leader_key = '<c-t>'
+
 "----------------------------------------------------
 " neocomplcache 
 "----------------------------------------------------
+
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -337,59 +358,62 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-
 " Plugin key-mappings.
-imap <C-s>     <Plug>(neocomplcache_snippets_expand)
-smap <C-s>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
-noremap es :<C-u>NeoComplCacheEditSnippets<CR>
 
 " SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><CR> pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+inoremap <expr><BS> pumvisible() ? neocomplcache#cancel_popup() . "<BS>" : "\<BS>"
+inoremap <expr><C-y> pumvisible() ? neocomplcache#smart_close_popup() : "\<C-y>"
+inoremap <expr><C-n> pumvisible() ? neocomplcache#close_popup() : "\<C-n>"
+inoremap <expr><C-h> pumvisible() ? neocomplcache#cancel_popup() : "\<C-h>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><C-h> pumvisible() ? neocomplcache#smart_close_popup() . "\<C-i>" : "\<C-h>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType typescript setlocal omnifunc=TSScompleteFunc
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
-let g:neocomplcache_omni_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
-
 if !exists('g:neocomplete#sources#omni#input_patterns') 
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.typescript = '.*'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
+let g:neocomplete#sources#omni#input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
 
-autocmd FileType css,scss,sass,html,xslate,markdown,javascript,typescript setlocal iskeyword& iskeyword+=-
+" FIXME
+" if !exists('g:neocomplcache_omni_patterns')
+"   let g:neocomplcache_omni_patterns = {}
+" endif
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+" let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+" let g:neocomplcache_omni_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
 
-au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
 
-""" lightline
+" FIXME 
+" autocmd FileType css,scss,sass,html,xslate,markdown,javascript,typescript setlocal iskeyword& iskeyword+=-
+
+
+
+"----------------------------------------------------
+" lightline 
+"----------------------------------------------------
+
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
@@ -404,7 +428,6 @@ let g:lightline = {
     \ 'separator': { 'left': '⮀', 'right': '⮂' },
     \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
 	\ }
-	
 
 function! MyModified()
   if &filetype == "help"
@@ -439,21 +462,24 @@ function! MyFilename()
 endfunction
 
 
-""" ENDOF: lightline
 
-:source $VIMRUNTIME/macros/matchit.vim
+"----------------------------------------------------
+" vim-over
+"----------------------------------------------------
 
-" over.vim
-" over.vimの起動
+" \m で OverCommandLine を機動
 nnoremap <silent> <Leader>m :OverCommandLine<CR>
-
 " カーソル下の単語をハイライト付きで置換
 nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-
 " コピーした文字列をハイライト付きで置換
 nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
+
+
+"----------------------------------------------------
 " yankround.vim
+"----------------------------------------------------
+
 " キーマップ
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
@@ -461,5 +487,38 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 " 履歴取得数
 let g:yankround_max_history = 50
-"履歴一覧(kien/ctrlp.vim)
+" 履歴一覧 (with kien/ctrlp.vim)
 nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+
+
+
+"----------------------------------------------------
+" vim-submode 
+"----------------------------------------------------
+" REF: http://haya14busa.com/improve-x-with-vim-submode/
+
+function! s:join_undo()
+    undojoin
+    normal! "_x
+endfunction
+nnoremap <silent> <Plug>(join_undo-x) :<C-u>call <SID>join_undo()<CR>
+call submode#enter_with('join_undo', 'n', '', 'x', '"_x')
+call submode#map('join_undo', 'n', 'r', 'x', '<Plug>(join_undo-x)')
+
+
+
+"----------------------------------------------------
+" emmet-vim
+"----------------------------------------------------
+
+" only enable normal mode functions.
+let g:user_emmet_mode='n'
+" enable all functions, which is equal to
+let g:user_emmet_mode='inv'
+" enable all function in all mode.
+let g:user_emmet_mode='a'
+" Enable detection with filetype
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,sass,scss EmmetInstall
+" trigger key
+let g:user_emmet_leader_key='<C-t>,'
