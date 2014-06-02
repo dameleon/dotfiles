@@ -43,7 +43,6 @@ NeoBundle 'othree/html5.vim.git'
 NeoBundle 'xhtml.vim'
 NeoBundle 'hail2u/vim-css3-syntax.git'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/emmet-vim'
 NeoBundle 'motemen/xslate-vim.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'gregsexton/gitv.git'
@@ -73,6 +72,7 @@ NeoBundle 'marijnh/tern_for_vim', {
     \  'build' : 'npm install'    
     \ }
 NeoBundle 'kana/vim-submode'
+NeoBundle 'mattn/emmet-vim.git'
 
 filetype plugin indent on
 
@@ -511,14 +511,5 @@ call submode#map('join_undo', 'n', 'r', 'x', '<Plug>(join_undo-x)')
 " emmet-vim
 "----------------------------------------------------
 
-" only enable normal mode functions.
-let g:user_emmet_mode='n'
-" enable all functions, which is equal to
-let g:user_emmet_mode='inv'
-" enable all function in all mode.
-let g:user_emmet_mode='a'
-" Enable detection with filetype
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,sass,scss EmmetInstall
-" trigger key
-let g:user_emmet_leader_key='<C-t>,'
+let g:user_emmet_mode='in'
+let g:user_emmet_leader_key='<C-T>'
