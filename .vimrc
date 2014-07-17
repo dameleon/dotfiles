@@ -73,6 +73,7 @@ NeoBundle 'marijnh/tern_for_vim', {
     \ }
 NeoBundle 'kana/vim-submode'
 NeoBundle 'mattn/emmet-vim.git'
+NeoBundle 'ingydotnet/yaml-vim'
 
 filetype plugin indent on
 

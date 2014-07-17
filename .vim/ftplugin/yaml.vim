@@ -1,1 +1,5 @@
-au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
+setlocal expandtab 
+setlocal tabstop=2 
+setlocal shiftwidth=2 
+setlocal softtabstop=0
+setlocal smarttab
