@@ -127,13 +127,13 @@ set writebackup
 " バックアップをとる場合
 set backup
 " バックアップファイルを作るディレクトリ
-set backupdir=/tmp/.vim/
+set backupdir=/tmp/
 " スワップファイルを作るディレクトリ
-set directory=/tmp/.vim/
+set directory=/tmp/
 " viminfoの保存場所
 set viminfo+=n/tmp/.viminfo
 " undo file の保存先を指定
-set undodir=/tmp/.vim/
+set undodir=/tmp/
 
 
 
