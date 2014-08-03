@@ -74,6 +74,7 @@ NeoBundle 'marijnh/tern_for_vim', {
 NeoBundle 'kana/vim-submode'
 NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'ingydotnet/yaml-vim'
+NeoBundle 'Valloric/MatchTagAlways'
 
 filetype plugin indent on
 
