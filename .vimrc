@@ -75,6 +75,7 @@ NeoBundle 'kana/vim-submode'
 NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'Valloric/MatchTagAlways'
+NeoBundle 'msanders/cocoa.vim'
 
 filetype plugin indent on
 

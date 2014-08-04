@@ -8,5 +8,7 @@ augroup filetypedetect
 	au BufRead,BufNewFile, *.sub setfiletype html
 	au BufRead,BufNewFile, *.tpl setfiletype html
 	au BufRead,BufNewFile, *.ect setfiletype html
+	au BufRead,BufNewFile, *.sketchplugin setfiletype objc
+	au BufRead,BufNewFile, *.jstalk setfiletype objc
 augroup END
 
