@@ -76,6 +76,7 @@ NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'Valloric/MatchTagAlways'
 NeoBundle 'msanders/cocoa.vim'
+NeoBundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
 
@@ -101,7 +102,8 @@ set backspace=indent,eol,start
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 "クリップボードへコピー
-set clipboard=unnamed
+set clipboard+=unnamed
+set clipboard+=autoselect
 "カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
 nnoremap j gj
 nnoremap k gk
