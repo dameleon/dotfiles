@@ -34,7 +34,7 @@ install tree
 install vim --devel --with-lua
 install w3m
 install wget
-install zsh
+install --disable-etcdir zsh
 install zsh-completions
 
 # cask
