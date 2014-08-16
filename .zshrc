@@ -19,11 +19,11 @@ setopt notify            # バックグラウンドジョブの状態変化を�
 setopt equals            # =commandを`which command`と同じ処理にする
 
 ### Complement ###
-autoload -U compinit; compinit # 補完機能を有効にする
-setopt auto_list               # 補完候補を一覧で表示する(d)
-setopt auto_menu               # 補完キー連打で補完候補を順に表示する(d)
-setopt list_packed             # 補完候補をできるだけ詰めて表示する
-setopt list_types              # 補完候補にファイルの種類も表示する
+autoload -Uz compinit && compinit # 補完機能を有効にする
+setopt auto_list                  # 補完候補を一覧で表示する(d)
+setopt auto_menu                  # 補完キー連打で補完候補を順に表示する(d)
+setopt list_packed                # 補完候補をできるだけ詰めて表示する
+setopt list_types                 # 補完候補にファイルの種類も表示する
 bindkey "^[[Z" reverse-menu-complete  # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小文字を区別しない
 
@@ -41,17 +41,18 @@ setopt hist_ignore_dups   # 直前と同じコマンドはヒストリに追加�
 setopt share_history      # 他のシェルのヒストリをリアルタイムで共有する
 setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
 
-# マッチしたコマンドのヒストリを表示できるようにする
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+### chr ###
+zstyle ':completion:*' menu select
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+# zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 
-# すべてのヒストリを表示する
-function history_all { history -E 1 }
+typeset -ga chpwd_functions
 
-bindkey '^R' history-incremental-search-backward
+autoload -U chpwd_recent_dirs cdr
+chpwd_functions+=chpwd_recent_dirs
+zstyle ":chpwd:*" recent-dirs-max 500
+zstyle ":chpwd:*" recent-dirs-default true
+zstyle ":completion:*" recent-dirs-insert always
 
 # ------------------------------
 # Look And Feel Settings
@@ -96,6 +97,21 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
 ;
 
 # ------------------------------
+# imports
+# ------------------------------
+
+for f (~/.zsh/**/*.zsh) source "${f}" # load peco sources
+
+### peco ###
+bindkey '^r' peco-select-history
+bindkey '^\' peco-cdr
+alias ackvim=peco-ack-vim
+
+### enter-ls-git ###
+bindkey '^m' ls-git
+
+
+# ------------------------------
 # Other Settings
 # ------------------------------
 
@@ -113,9 +129,6 @@ precmd() {
     psvar[1]=$vcs_info_msg_0_
 }
 PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
-
-### Aliases ###
-alias v=vim
 
 
 ### Functions ###
