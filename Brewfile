@@ -64,6 +64,17 @@ cask install iphone-configuration-utility
 cask install blender
 cask install unity3d
 
+## quick look extensions
+cask install betterzipql
+cask install qlcolorcode
+cask install qlmarkdown
+cask install qlprettypatch
+cask install qlstephen
+cask install quicklook-csv
+cask install quicklook-json
+cask install suspicious-package
+cask install webp-quicklook
+
 ## etc
 cask install xquartz
 
