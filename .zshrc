@@ -115,6 +115,9 @@ bindkey '^m' ls-git
 # Other Settings
 # ------------------------------
 
+### simplehttpserver
+alias simplehttpd='python -m SimpleHTTPServer 8080'
+
 ### version info ##
 autoload -Uz vcs_info
 precmd() {
