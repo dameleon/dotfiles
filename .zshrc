@@ -1,6 +1,13 @@
 # ------------------------------
 # General Settings
 # ------------------------------
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+    export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+    export TERM=xterm-256color
+fi
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 typeset -U name_of_the_variable # .zprofile と共存できるように
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
@@ -33,8 +40,8 @@ unsetopt caseglob    # ファイルグロブで大文字小文字を区別しな
 
 ### History ###
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
-HISTSIZE=1000            # メモリに保存されるヒストリの件数
-SAVEHIST=1000            # 保存されるヒストリの件数
+HISTSIZE=10000            # メモリに保存されるヒストリの件数
+SAVEHIST=10000            # 保存されるヒストリの件数
 setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_ignore_dups   # 直前と同じコマンドはヒストリに追加しない
@@ -106,6 +113,7 @@ for f (~/.zsh/**/*.zsh) source "${f}" # load peco sources
 bindkey '^r' peco-select-history
 bindkey '^\' peco-cdr
 alias ackvim=peco-ack-vim
+alias gbr=peco-git-branch-awesome
 
 ### enter-ls-git ###
 bindkey '^m' ls-git
