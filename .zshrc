@@ -112,11 +112,9 @@ for f (~/.zsh/**/*.zsh) source "${f}" # load peco sources
 ### peco ###
 bindkey '^r' peco-select-history
 bindkey '^\' peco-cdr
-alias ackvim=peco-ack-vim
-alias gbr=peco-git-branch-awesome
-
-### enter-ls-git ###
 bindkey '^m' ls-git
+bindkey '^g' peco-git-branch-checkout
+alias ackvim=peco-ack-vim
 
 
 # ------------------------------
