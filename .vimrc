@@ -18,7 +18,7 @@ filetype off
 filetype plugin indent off
 
 if has('vim_starting')
-	set runtimepath+=~/.vim/neobundle.vim/
+	set runtimepath+=~/.vim/neobundle.vim/,$GOROOT.'/misc/vim',$GOROOT.'/misc/vim/after'
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
@@ -67,8 +67,12 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'marijnh/tern_for_vim', {
-    \  'build' : 'npm install'    
+    \  'build' : 'npm install -g'    
+    \ }
+NeoBundle 'clausreinke/typescript-tools', {
+    \  'build' : 'npm install -g'    
     \ }
 NeoBundle 'kana/vim-submode'
 NeoBundle 'mattn/emmet-vim.git'
@@ -76,10 +80,11 @@ NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'Valloric/MatchTagAlways'
 NeoBundle 'msanders/cocoa.vim'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'tikhomirov/vim-glsl'
 
 filetype plugin indent on
-
 
 
 "----------------------------------------------------
@@ -301,7 +306,7 @@ function! RTrim()
     %s/\s\+$//e
     call setpos(".", s:cursor)
 endfunction
-autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs call RTrim()
+autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs,*.ts call RTrim()
 
 
 

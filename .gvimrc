@@ -8,7 +8,7 @@ if has('gui_macvim')
     " KaoriYa Vim の自動 IM を禁止
     set imdisableactivate
     " フォント
-    set guifont=Osaka-Mono:h12
+    set guifont=Osaka-Mono:h13
     " ウィンドウサイズ
     set lines=60 columns=150
     " ウィンドウの透明度
