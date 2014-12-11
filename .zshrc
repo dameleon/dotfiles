@@ -160,3 +160,5 @@ function ssh() {
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+# added by travis gem
+[ -f /Users/takahashi.kei/.travis/travis.sh ] && source /Users/takahashi.kei/.travis/travis.sh
