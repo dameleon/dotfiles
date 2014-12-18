@@ -1,85 +1,77 @@
-update
-upgrade
+# Brewfile for brewdler
 
 # brew cask
-tap caskroom/cask || true
-install brew-cask
+tap 'caskroom/cask'
 
 # for build
-install autoconf
-install automake
-install openssl
-install pcre
-install pkg-config
-install readline
+brew 'autoconf'
+brew 'automake'
+brew 'openssl'
+brew 'pcre'
+brew 'pkg-config'
+brew 'readline'
 
 # language & tool
-install go
-install lua
-install nodebrew
-install rbenv
-install ruby-build
-install android-sdk
+brew 'go'
+brew 'lua'
+brew 'nodebrew'
+brew 'rbenv'
+brew 'ruby-build'
+brew 'android-sdk'
 
 # basic & util
-install ack
-install git
-install hub
-install jq
-install mercurial
-install phantomjs
-install subversion
-install tig
-install tree
-install vim --devel --with-lua
-install w3m
-install wget
-install --disable-etcdir zsh
-install zsh-completions
+brew 'ack'
+brew 'git'
+brew 'hub'
+brew 'jq'
+brew 'mercurial'
+brew 'phantomjs'
+brew 'subversion'
+brew 'tig'
+brew 'tree'
+brew 'vim', args: ['devel', 'with-lua']
+brew 'w3m'
+brew 'wget'
+brew 'zsh', args: ['disable-etcdir']
+brew 'zsh-completions'
 
 # cask
 ## utils
-cask install alfred
-cask install appcleaner
-cask install charles
-cask install coteditor
-cask install gyazo
-cask install iterm2
-cask install karabiner
-cask install limechat
-cask install ngrok
-cask install path-finder
-cask install vagrant
+cask 'alfred'
+cask 'appcleaner'
+cask 'charles'
+cask 'coteditor'
+cask 'gyazo'
+cask 'iterm2'
+cask 'karabiner'
+cask 'limechat'
+cask 'ngrok'
+cask 'path-finder'
+cask 'vagrant'
 
 ## android
-cask install android-studio
-cask install genymotion
-cask install java
-cask install virtualbox
+cask 'android-studio'
+cask 'genymotion'
+cask 'java'
+cask 'virtualbox'
 
 ## ios
-cask install iphone-configuration-utility
+cask 'iphone-configuration-utility'
 
 ## Unity & 3D
-cask install blender
-cask install unity3d
+cask 'blender'
+cask 'unity3d'
 
 ## quick look extensions
-cask install betterzipql
-cask install qlcolorcode
-cask install qlmarkdown
-cask install qlprettypatch
-cask install qlstephen
-cask install quicklook-csv
-cask install quicklook-json
-cask install suspicious-package
-cask install webp-quicklook
+cask 'betterzipql'
+cask 'qlcolorcode'
+cask 'qlmarkdown'
+cask 'qlprettypatch'
+cask 'qlstephen'
+cask 'quicklook-csv'
+cask 'quicklook-json'
+cask 'suspicious-package'
+cask 'webp-quicklook'
 
 ## etc
-cask install xquartz
-
-# finally
-cask alfred link
-cleanup
-cask cleanup
-
+cask 'xquartz'
