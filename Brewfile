@@ -18,9 +18,11 @@ brew 'nodebrew'
 brew 'rbenv'
 brew 'ruby-build'
 brew 'android-sdk'
+brew 'plenv'
+brew 'perl-build'
 
 # basic & util
-brew 'ack'
+brew 'pt'
 brew 'git'
 brew 'hub'
 brew 'jq'
@@ -35,43 +37,3 @@ brew 'wget'
 brew 'zsh', args: ['disable-etcdir']
 brew 'zsh-completions'
 
-# cask
-## utils
-cask 'alfred'
-cask 'appcleaner'
-cask 'charles'
-cask 'coteditor'
-cask 'gyazo'
-cask 'iterm2'
-cask 'karabiner'
-cask 'limechat'
-cask 'ngrok'
-cask 'path-finder'
-cask 'vagrant'
-
-## android
-cask 'android-studio'
-cask 'genymotion'
-cask 'java'
-cask 'virtualbox'
-
-## ios
-cask 'iphone-configuration-utility'
-
-## Unity & 3D
-cask 'blender'
-cask 'unity3d'
-
-## quick look extensions
-cask 'betterzipql'
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'qlprettypatch'
-cask 'qlstephen'
-cask 'quicklook-csv'
-cask 'quicklook-json'
-cask 'suspicious-package'
-cask 'webp-quicklook'
-
-## etc
-cask 'xquartz'

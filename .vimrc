@@ -20,7 +20,7 @@ filetype plugin indent off
 if has('vim_starting')
 	set runtimepath+=~/.vim/neobundle.vim/,$GOROOT.'/misc/vim',$GOROOT.'/misc/vim/after'
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundle 'Shougo/vimproc', {
     \ 'build' : {
@@ -84,8 +84,11 @@ NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'tikhomirov/vim-glsl'
 
+call neobundle#end()
+
 filetype plugin indent on
 
+NeoBundleCheck
 
 "----------------------------------------------------
 " 基本的な設定
@@ -306,7 +309,7 @@ function! RTrim()
     %s/\s\+$//e
     call setpos(".", s:cursor)
 endfunction
-autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs,*.ts call RTrim()
+autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs,*.ts,*.pl,*.pm call RTrim()
 
 
 
