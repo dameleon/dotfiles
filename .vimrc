@@ -310,6 +310,8 @@ function! RTrim()
     call setpos(".", s:cursor)
 endfunction
 autocmd BufWritePre *.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs,*.ts,*.pl,*.pm call RTrim()
+" JSON整形
+nnoremap <silent> ,js :%!python -m json.tool<CR>
 
 
 
