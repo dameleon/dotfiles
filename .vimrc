@@ -236,6 +236,9 @@ autocmd BufWritePre *.a,*.cpp,*.sh,*.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py
 let g:ctrlp_map = '<C-g>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtExit()': ['<esc>', '<c-c>'],
+  \ }
 
 
 "----------------------------------------------------
