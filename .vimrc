@@ -99,7 +99,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
-
+nnoremap <C-h> ^
+nnoremap <C-T> $
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
 
 "----------------------------------------------------
 " vim file関連
@@ -227,6 +230,15 @@ autocmd BufWritePre *.a,*.cpp,*.sh,*.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py
 
 
 "----------------------------------------------------
+" ctrlp.vim
+"----------------------------------------------------
+
+let g:ctrlp_map = '<C-g>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
+
+"----------------------------------------------------
 " yankround.vim
 "----------------------------------------------------
 
@@ -236,9 +248,9 @@ nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 " 履歴取得数
-let g:yankround_max_history = 50
+let g:yankround_max_history = 20
 " 履歴一覧 (with kien/ctrlp.vim)
-" nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
 
 
 "----------------------------------------------------
@@ -293,13 +305,11 @@ inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
-inoremap <expr><CR> pumvisible() ? neocomplete#smart_close_popup() : "\<CR>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 inoremap <expr><BS> pumvisible() ? neocomplete#cancel_popup() . "<BS>" : "\<BS>"
-inoremap <expr><C-y> pumvisible() ? neocomplete#smart_close_popup() : "\<C-y>"
-inoremap <expr><C-n> pumvisible() ? neocomplete#close_popup() : "\<C-n>"
-inoremap <expr><C-h> pumvisible() ? neocomplete#cancel_popup() : "\<C-h>"
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr><C-h> pumvisible() ? neocomplete#smart_close_popup() . "\<C-i>" : "\<C-h>"
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
