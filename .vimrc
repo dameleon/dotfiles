@@ -99,10 +99,13 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
+" 他操作系
 nnoremap <C-h> ^
 nnoremap <C-T> $
 inoremap <C-j> <Esc>
 vnoremap <C-j> <Esc>
+nnoremap <silent>bb :b#<CR>
+
 
 "----------------------------------------------------
 " vim file関連
@@ -239,6 +242,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtExit()': ['<esc>', '<c-c>'],
   \ }
+let g:ctrlp_extensions = ['mixed', 'file', 'dir', 'quickfix']
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
 
 
 "----------------------------------------------------
@@ -441,3 +446,33 @@ let g:syntastic_check_on_wq = 0
 " OmniSharp
 "----------------------------------------------------
 let g:OmniSharp_selector_ui = 'ctrlp'
+let g:syntastic_cs_checkers = ['syntax']
+augroup omnisharp_commands
+    autocmd!
+    " automatic syntax check on events
+    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+    " show type information automatically when the cursor stops moving
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+    autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<CR>
+    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<CR>
+    autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<CR>
+    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<CR>
+    " finds members in the current buffer
+    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<CR>
+    " cursor can be anywhere on the line containing an issue
+    autocmd FileType cs nnoremap <leader>fi :OmniSharpFixIssue<CR>
+    autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<CR>
+    autocmd FileType cs nnoremap <leader>tl :OmniSharpTypeLookup<CR>
+    autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<CR>
+    " navigate up/down by method/property/field
+    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<CR>
+    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<CR>
+    autocmd FileType cs nnoremap <leader><space> :OmniSharpGetCodeActions<CR>
+    autocmd FileType cs vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<CR>
+    autocmd FileType cs nnoremap <leader>rn :OmniSharpRename<CR>
+    autocmd FileType cs nnoremap <leader>rs :OmniSharpReloadSolution<CR>
+    autocmd FileType cs nnoremap <leader>cf :OmniSharpCodeFormat<CR>
+augroup END
+
+
