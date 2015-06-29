@@ -6,7 +6,9 @@ if has('gui_macvim')
     " アンチエイリアス
     set antialias		
     " KaoriYa Vim の自動 IM を禁止
-    set noimdisableactivate
+    set imdisableactivate
+    " IM に関する機能を全て disable
+    " set imdisable
     " フォント
     set guifont=Osaka-Mono:h13
     " ウィンドウサイズ
