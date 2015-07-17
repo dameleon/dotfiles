@@ -240,6 +240,7 @@ autocmd BufWritePre *.a,*.cpp,*.sh,*.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py
 let g:ctrlp_map = '<C-g>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_files=0
 let g:ctrlp_prompt_mappings = {
   \ 'PrtExit()': ['<esc>', '<c-c>'],
   \ }
@@ -247,7 +248,7 @@ let g:ctrlp_extensions = ['mixed', 'file', 'dir', 'quickfix']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|meta)$',
+  \ 'file': '\v\.(exe|so|dll|meta|asset)$',
   \ }
 
 "----------------------------------------------------
