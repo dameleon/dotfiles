@@ -450,6 +450,7 @@ let g:syntastic_check_on_wq = 0
 "----------------------------------------------------
 " OmniSharp
 "----------------------------------------------------
+
 let g:OmniSharp_selector_ui = 'ctrlp'
 let g:syntastic_cs_checkers = ['syntax']
 augroup omnisharp_commands
@@ -481,3 +482,10 @@ augroup omnisharp_commands
 augroup END
 
 
+"----------------------------------------------------
+" neosnippe
+"----------------------------------------------------
+
+imap <expr><C-l>
+    \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
