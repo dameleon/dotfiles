@@ -95,6 +95,10 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 " クリップボードへコピー
 set clipboard+=unnamed,autoselect
+" CursorHoldの時間を設定
+set updatetime=500
+" cmd領域の高さ設定
+set cmdheight=2
 " カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
 nnoremap j gj
 nnoremap k gk
@@ -106,6 +110,13 @@ nnoremap <C-T> $
 inoremap <C-j> <Esc>
 vnoremap <C-j> <Esc>
 nnoremap <silent>bb :b#<CR>
+" 括弧入力時の移譲補助
+inoremap () ()<LEFT>
+inoremap <> <><LEFT>
+inoremap [] []<LEFT>
+inoremap {} {}<LEFT>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
 
 
 "----------------------------------------------------
@@ -177,7 +188,8 @@ set textwidth=0
 set wrap
 " ステータスラインに表示する情報の指定
 set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=<%l/%L:%p%%>
-
+" 補完表示の設定
+set completeopt=longest,menuone,preview
 
 "----------------------------------------------------
 " インデント
@@ -299,6 +311,8 @@ let g:neocomplete#enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" disable auto close
+let g:neocomplete#enable_auto_close_preview = 0
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -458,7 +472,7 @@ augroup omnisharp_commands
     " automatic syntax check on events
     autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
     " show type information automatically when the cursor stops moving
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithDocumentation()
     autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<CR>
     autocmd FileType cs nnoremap <leader>fm :OmniSharpFindImplementations<CR>
     autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<CR>
