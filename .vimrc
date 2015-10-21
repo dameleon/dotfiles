@@ -45,8 +45,12 @@ NeoBundle 'othree/html5.vim.git'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'hail2u/vim-css3-syntax.git'
 NeoBundleLazy 'marijnh/tern_for_vim', {
-    \  'build' : 'npm install -g && npm install'    
-    \ }
+\   'build' : 'npm install -g && npm install',
+\   'autoload' : {
+\       'functions': ['tern#Complete', 'tern#Enable'],
+\       'filetypes' : 'javascript'
+\   }
+\ }
 NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'Valloric/MatchTagAlways'
@@ -66,6 +70,7 @@ NeoBundleLazy 'OmniSharp/omnisharp-vim', {
 NeoBundleLazy 'OrangeT/vim-csharp', { 'autoload': { 'filetypes': [ 'cs', 'csi', 'csx' ] } }
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ShaderHighLight'
+NeoBundle 'cespare/vim-toml'
 
 """" end of plugin list
 
@@ -96,7 +101,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 " クリップボードへコピー
 set clipboard+=unnamed,autoselect
 " CursorHoldの時間を設定
-set updatetime=500
+set updatetime=1000
 " cmd領域の高さ設定
 set cmdheight=2
 " カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
@@ -345,6 +350,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType typescript setlocal omnifunc=TSScompleteFunc
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
