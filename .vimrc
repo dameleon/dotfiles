@@ -71,6 +71,7 @@ NeoBundleLazy 'OrangeT/vim-csharp', { 'autoload': { 'filetypes': [ 'cs', 'csi', 
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ShaderHighLight'
 NeoBundle 'cespare/vim-toml'
+NeoBundle 'vim-ruby/vim-ruby'
 
 """" end of plugin list
 
