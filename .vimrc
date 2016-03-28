@@ -56,7 +56,7 @@ NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'Valloric/MatchTagAlways'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'fatih/vim-go'
+NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'c9s/perlomni.vim'
 NeoBundleLazy 'OmniSharp/omnisharp-vim', {
@@ -72,6 +72,13 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ShaderHighLight'
 NeoBundle 'cespare/vim-toml'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
+NeoBundleLazy 'Shougo/neocomplcache-rsense.vim', { 
+\   'autoload' : {
+\       'insert' : 1,
+\       'filetypes': 'ruby',
+\   },
+\ }
 
 """" end of plugin list
 
@@ -368,6 +375,10 @@ let g:neocomplete#sources#omni#input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
 
+" others
+let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+
+
 "----------------------------------------------------
 " lightline 
 "----------------------------------------------------
@@ -466,7 +477,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
 
 "----------------------------------------------------
 " OmniSharp
@@ -510,3 +523,10 @@ augroup END
 imap <expr><C-l>
     \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+
+
+"----------------------------------------------------
+" rsense
+"----------------------------------------------------
+
+let g:rsenseUseOmniFunc = 1
