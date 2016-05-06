@@ -71,7 +71,6 @@ NeoBundleLazy 'OrangeT/vim-csharp', { 'autoload': { 'filetypes': [ 'cs', 'csi', 
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ShaderHighLight'
 NeoBundle 'cespare/vim-toml'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundleLazy 'Shougo/neocomplcache-rsense.vim', { 
 \   'autoload' : {
@@ -360,20 +359,23 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType typescript setlocal omnifunc=TSScompleteFunc
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns') 
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 let g:neocomplete#sources#omni#input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' 
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 
 " others
 let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'

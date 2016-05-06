@@ -114,6 +114,7 @@ bindkey '^r' peco-select-history
 bindkey '^\' peco-cdr
 bindkey '^m' ls-git
 bindkey '^g' peco-git-branch-checkout
+bindkey '^p' peco-ghq-src
 alias ackvim=peco-ack-vim
 
 
