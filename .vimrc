@@ -34,6 +34,7 @@ call dein#add('thinca/vim-quickrun')
 call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-surround')
+call dein#add('nixprime/cpsm', {'build' : 'mkdir -p build && cd build && cmake -DPY3:BOOL=$PY3 .. && make install'})
 " filetype共通
 call dein#add('sheerun/vim-polyglot')
 call dein#add('hail2u/vim-css3-syntax')
@@ -53,10 +54,6 @@ call dein#add('ternjs/tern_for_vim', {
 \ })
 call dein#add('OmniSharp/omnisharp-vim', {
 \   'build' : 'xbuild server/OmniSharp.sln',
-\   'on_ft' : ['cs', 'csi', 'csx'],
-\   'lazy' : 1
-\ })
-call dein#add('OrangeT/vim-csharp', {
 \   'on_ft' : ['cs', 'csi', 'csx'],
 \   'lazy' : 1
 \ })
@@ -89,7 +86,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 " クリップボードへコピー
 set clipboard+=unnamed,autoselect
 " CursorHoldの時間を設定
-set updatetime=1000
+set updatetime=200
 " cmd領域の高さ設定
 set cmdheight=2
 " カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
@@ -145,8 +142,12 @@ set smartcase
 set wrapscan
 " インクリメンタルサーチを使わない
 set noincsearch
-" 検索にはAckを使う
-set grepprg=ack\ -a
+" 検索にはplatinum searcherを使う
+if executable('pt')
+    set grepprg=pt\ --nogroup\ --nocolor
+elseif executable('ack')
+    set grepprg=ack\ -a
+endif
 " 検索結果文字列のハイライトを有効にする
 set hlsearch
 
@@ -184,7 +185,7 @@ set wrap
 " ステータスラインに表示する情報の指定
 set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=<%l/%L:%p%%>
 " 補完表示の設定
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 "----------------------------------------------------
 " インデント
@@ -209,16 +210,15 @@ set nojoinspaces
 "----------------------------------------------------
 
 set encoding=utf-8
-set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 " EUC-JP
-nmap ,ee :e ++enc=euc-jp<CR>
+nmap <leader>ee :e ++enc=euc-jp<CR>
 " SJIS
-nmap ,es :e ++enc=cp932<CR>
+nmap <leader>es :e ++enc=cp932<CR>
 " JIS
-nmap ,ej :e ++enc=iso-2022-jp<CR>
+nmap <leader>ej :e ++enc=iso-2022-jp<CR>
 " UTF-8
-nmap ,eu :e ++enc=utf-8<CR>
+nmap <leader>eu :e ++enc=utf-8<CR>
 
 
 "----------------------------------------------------
@@ -227,17 +227,6 @@ nmap ,eu :e ++enc=utf-8<CR>
 
 " バッファを切替えてもundoの効力を失わない
 set hidden
-" 起動時のメッセージを表示しない
-set shortmess+=I
-" JSON整形
-nnoremap <silent> ,js :%!python -m json.tool<CR>
-" 空白除去
-function! RTrim()
-    let s:cursor = getpos(".")
-    %s/\s\+$//e
-    call setpos(".", s:cursor)
-endfunction
-autocmd BufWritePre *.a,*.cpp,*.sh,*.html,*.tx,*.css,*.scss,*.rb,*.js,*.bat,*.py,*.cs,*.ts,*.pl,*.pm call RTrim()
 
 
 "----------------------------------------------------
@@ -248,6 +237,7 @@ let g:ctrlp_map = '<C-g>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files=0
+let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtExit()': ['<esc>', '<c-c>'],
   \ }
@@ -257,6 +247,8 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll|meta|asset)$',
   \ }
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+let g:ctrlp_user_command = 'files -a %s'
 
 "----------------------------------------------------
 " yankround.vim
@@ -277,10 +269,10 @@ nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
 " incsearch.vim
 "----------------------------------------------------
 
+let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
@@ -475,12 +467,12 @@ let g:syntastic_cs_checkers = ['syntax']
 augroup omnisharp_commands
     autocmd!
     " automatic syntax check on events
-    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+    autocmd BufEnter,BufWrite *.cs SyntasticCheck
     " show type information automatically when the cursor stops moving
     autocmd CursorHold *.cs call OmniSharp#TypeLookupWithDocumentation()
     autocmd FileType cs nnoremap <leader>gd :OmniSharpGotoDefinition<CR>
     autocmd FileType cs nnoremap <leader>fm :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<CR>
+    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType
     autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<CR>
     autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<CR>
     " finds members in the current buffer
