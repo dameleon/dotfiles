@@ -507,3 +507,9 @@ imap <expr><C-l>
 "----------------------------------------------------
 
 let g:rsenseUseOmniFunc = 1
+
+" FIXME: brew経由のpythonを使えるようにとりあえず…
+if has('gui_macvim')
+    set pythondll=/usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
+endif
+
