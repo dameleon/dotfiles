@@ -1,92 +1,73 @@
 "----------------------------------------------------
-" Plugin & NeoBundle
+" Plugin & dein.vim
 "----------------------------------------------------
-
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-call neobundle#begin(expand('~/.vim/bundle'))
+set runtimepath+=/Users/dameleon/.vim/dein/repos/github.com/Shougo/dein.vim
 
-"""" NeoBundle import plugin list
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin('/Users/dameleon/.vim/dein')
+
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
 " 機能系
-NeoBundle 'LeafCage/yankround.vim'
-NeoBundle 'Shougo/neocomplete.git'
-NeoBundle 'Shougo/neosnippet-snippets.git'
-NeoBundle 'Shougo/neosnippet.git'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'h1mesuke/vim-alignta.git'
-NeoBundle 'itchyny/lightline.vim.git'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'netrw.vim'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'scrooloose/nerdcommenter.git'
-NeoBundle 'sudo.vim'
-NeoBundle 'thinca/vim-localrc'
-NeoBundle 'thinca/vim-qfreplace.git'
-NeoBundle 'thinca/vim-quickrun.git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround.git'
-" NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'rizzatti/dash.vim'
+call dein#add('LeafCage/yankround.vim')
+call dein#add('Shougo/neocomplete')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('haya14busa/incsearch.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('kana/vim-submode')
+call dein#add('mileszs/ack.vim')
+call dein#add('netrw.vim')
+call dein#add('osyo-manga/vim-over')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('scrooloose/syntastic')
+call dein#add('sudo.vim')
+call dein#add('thinca/vim-localrc')
+call dein#add('thinca/vim-quickrun')
+call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-surround')
+" filetype共通
+call dein#add('sheerun/vim-polyglot')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('mattn/emmet-vim')
+call dein#add('Valloric/MatchTagAlways')
+" filetype別
+call dein#add('Blackrush/vim-gocode', {
+\   'on_ft' : ['go']
+\ })
+call dein#add('vim-jp/vim-go-extra', {
+\   'on_ft' : ['go']
+\ })
+call dein#add('ternjs/tern_for_vim', {
+\   'build' : 'npm install',
+\   'on_ft' : ['js', 'javascript'],
+\   'lazy' : 1
+\ })
+call dein#add('OmniSharp/omnisharp-vim', {
+\   'build' : 'xbuild server/OmniSharp.sln',
+\   'on_ft' : ['cs', 'csi', 'csx'],
+\   'lazy' : 1
+\ })
+call dein#add('OrangeT/vim-csharp', {
+\   'on_ft' : ['cs', 'csi', 'csx'],
+\   'lazy' : 1
+\ })
 
-" 個別filetype
-NeoBundle 'othree/html5.vim.git'
-NeoBundle 'JulesWang/css.vim'
-NeoBundle 'hail2u/vim-css3-syntax.git'
-NeoBundleLazy 'marijnh/tern_for_vim', {
-\   'build' : 'npm install -g && npm install',
-\   'autoload' : {
-\       'functions': ['tern#Complete', 'tern#Enable'],
-\       'filetypes' : 'javascript'
-\   }
-\ }
-NeoBundle 'mattn/emmet-vim.git'
-NeoBundle 'ingydotnet/yaml-vim'
-NeoBundle 'Valloric/MatchTagAlways'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'vim-jp/vim-go-extra'
-NeoBundle 'tikhomirov/vim-glsl'
-NeoBundle 'c9s/perlomni.vim'
-NeoBundleLazy 'OmniSharp/omnisharp-vim', {
-\   'autoload': { 'filetypes': [ 'cs', 'csi', 'csx' ] },
-\   'build': {
-\     'windows' : 'msbuild server/OmniSharp.sln',
-\     'mac': 'xbuild server/OmniSharp.sln',
-\     'unix': 'xbuild server/OmniSharp.sln',
-\   },
-\ }
-NeoBundleLazy 'OrangeT/vim-csharp', { 'autoload': { 'filetypes': [ 'cs', 'csi', 'csx' ] } }
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/ShaderHighLight'
-NeoBundle 'cespare/vim-toml'
-NeoBundle 'tpope/vim-rails'
-NeoBundleLazy 'Shougo/neocomplcache-rsense.vim', { 
-\   'autoload' : {
-\       'insert' : 1,
-\       'filetypes': 'ruby',
-\   },
-\ }
+call dein#end()
 
-"""" end of plugin list
-
-call neobundle#end()
 filetype plugin indent on
-NeoBundleCheck
 
-" matchit を読み込む
-:source $VIMRUNTIME/macros/matchit.vim
+if dein#check_install()
+  call dein#install()
+endif
 
 
 "----------------------------------------------------
@@ -129,7 +110,9 @@ inoremap [] []<LEFT>
 inoremap {} {}<LEFT>
 inoremap "" ""<LEFT>
 inoremap '' ''<LEFT>
-
+" shift-tabでtabを戻す
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
 
 "----------------------------------------------------
 " vim file関連
