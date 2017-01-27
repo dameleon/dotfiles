@@ -5,62 +5,67 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/Users/dameleon/.vim/dein/repos/github.com/Shougo/dein.vim
+let $DEIN_VIM_PATH=$HOME."/.vim/dein"
 
-call dein#begin('/Users/dameleon/.vim/dein')
+set runtimepath+=$DEIN_VIM_PATH/repos/github.com/Shougo/dein.vim
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+if dein#load_state($DEIN_VIM_PATH)
+  call dein#begin($DEIN_VIM_PATH)
+  call dein#add($DEIN_VIM_PATH.'/repos/github.com/Shougo/dein.vim')
 
-" 機能系
-call dein#add('LeafCage/yankround.vim')
-call dein#add('Shougo/neocomplete')
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('flazz/vim-colorschemes')
-call dein#add('haya14busa/incsearch.vim')
-call dein#add('itchyny/lightline.vim')
-call dein#add('junegunn/vim-easy-align')
-call dein#add('kana/vim-submode')
-call dein#add('mileszs/ack.vim')
-call dein#add('netrw.vim')
-call dein#add('osyo-manga/vim-over')
-call dein#add('scrooloose/nerdcommenter')
-call dein#add('scrooloose/syntastic')
-call dein#add('sudo.vim')
-call dein#add('thinca/vim-localrc')
-call dein#add('thinca/vim-quickrun')
-call dein#add('tpope/vim-dispatch')
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-surround')
-call dein#add('nixprime/cpsm', {'build' : 'mkdir -p build && cd build && cmake -DPY3:BOOL=$PY3 .. && make install'})
-" filetype共通
-call dein#add('sheerun/vim-polyglot')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('mattn/emmet-vim')
-call dein#add('Valloric/MatchTagAlways')
-" filetype別
-call dein#add('Blackrush/vim-gocode', {
-\   'on_ft' : ['go']
-\ })
-call dein#add('vim-jp/vim-go-extra', {
-\   'on_ft' : ['go']
-\ })
-call dein#add('ternjs/tern_for_vim', {
-\   'build' : 'npm install',
-\   'on_ft' : ['js', 'javascript'],
-\   'lazy' : 1
-\ })
-call dein#add('OmniSharp/omnisharp-vim', {
-\   'build' : 'xbuild server/OmniSharp.sln',
-\   'on_ft' : ['cs', 'csi', 'csx'],
-\   'lazy' : 1
-\ })
+  " 機能系
+  call dein#add('LeafCage/yankround.vim')
+  call dein#add('Shougo/neocomplete')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('flazz/vim-colorschemes')
+  call dein#add('haya14busa/incsearch.vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('junegunn/vim-easy-align')
+  call dein#add('kana/vim-submode')
+  call dein#add('mileszs/ack.vim')
+  call dein#add('netrw.vim')
+  call dein#add('osyo-manga/vim-over')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('sudo.vim')
+  call dein#add('thinca/vim-localrc')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('tpope/vim-dispatch')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-surround')
+  call dein#add('nixprime/cpsm', {'build' : 'mkdir -p build && cd build && cmake -DPY3:BOOL=$PY3 .. && make install'})
+  " filetype共通
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('hail2u/vim-css3-syntax')
+  call dein#add('mattn/emmet-vim')
+  call dein#add('Valloric/MatchTagAlways')
+  call dein#add('rest.vim')
+  " filetype別
+  call dein#add('Blackrush/vim-gocode', {
+  \   'on_ft' : ['go']
+  \ })
+  call dein#add('vim-jp/vim-go-extra', {
+  \   'on_ft' : ['go']
+  \ })
+  call dein#add('ternjs/tern_for_vim', {
+  \   'build' : 'npm install',
+  \   'on_ft' : ['js', 'javascript'],
+  \   'lazy' : 1
+  \ })
+  call dein#add('OmniSharp/omnisharp-vim', {
+  \   'build' : 'xbuild server/OmniSharp.sln',
+  \   'on_ft' : ['cs', 'csi', 'csx'],
+  \   'lazy' : 1
+  \ })
 
-call dein#end()
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
+syntax enable
 
 if dein#check_install()
   call dein#install()
@@ -296,7 +301,7 @@ let g:neocomplete#enable_camel_case_completion = 1
 " _(アンダーバー)区切りの補完を有効化
 let g:neocomplete#enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " disable auto close
 let g:neocomplete#enable_auto_close_preview = 0
@@ -500,6 +505,7 @@ augroup END
 imap <expr><C-l>
     \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+let g:neosnippet#snippets_directory = '~/.vim/neosnippet-snippet/'
 
 
 "----------------------------------------------------
@@ -513,3 +519,13 @@ if has('gui_macvim')
     set pythondll=/usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
 endif
 
+
+"----------------------------------------------------
+" vim easy align
+"----------------------------------------------------
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
