@@ -5,13 +5,10 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-let $DEIN_VIM_PATH=$HOME."/.vim/dein"
+set runtimepath+=/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim
 
-set runtimepath+=$DEIN_VIM_PATH/repos/github.com/Shougo/dein.vim
-
-if dein#load_state($DEIN_VIM_PATH)
-  call dein#begin($DEIN_VIM_PATH)
-  call dein#add($DEIN_VIM_PATH.'/repos/github.com/Shougo/dein.vim')
+if dein#load_state('/Users/dameleon/.cache/dein')
+  call dein#begin('/Users/dameleon/.cache/dein')
 
   " 機能系
   call dein#add('LeafCage/yankround.vim')
@@ -35,30 +32,13 @@ if dein#load_state($DEIN_VIM_PATH)
   call dein#add('tpope/vim-dispatch')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-surround')
-  call dein#add('nixprime/cpsm', {'build' : 'mkdir -p build && cd build && cmake -DPY3:BOOL=$PY3 .. && make install'})
+  call dein#add('nixprime/cpsm')
   " filetype共通
   call dein#add('sheerun/vim-polyglot')
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('mattn/emmet-vim')
-  call dein#add('Valloric/MatchTagAlways')
   call dein#add('vim-scripts/rest.vim')
   " filetype別
-  call dein#add('Blackrush/vim-gocode', {
-  \   'on_ft' : ['go']
-  \ })
-  call dein#add('vim-jp/vim-go-extra', {
-  \   'on_ft' : ['go']
-  \ })
-  call dein#add('ternjs/tern_for_vim', {
-  \   'build' : 'npm install',
-  \   'on_ft' : ['js', 'javascript'],
-  \   'lazy' : 1
-  \ })
-  call dein#add('OmniSharp/omnisharp-vim', {
-  \   'build' : 'xbuild server/OmniSharp.sln',
-  \   'on_ft' : ['cs', 'csi', 'csx'],
-  \   'lazy' : 1
-  \ })
 
   call dein#end()
   call dein#save_state()
