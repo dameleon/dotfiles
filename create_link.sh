@@ -7,8 +7,3 @@ do
         ln -Fis "$PWD/$dotfile" $HOME
     fi
 done
-
-if [ ! -d ~/.vim ]
-then
-    ln -s ./tern_plugin .vim/bundle/tern_for_vim/plugin
-fi
