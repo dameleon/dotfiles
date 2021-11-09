@@ -16,8 +16,10 @@ call dein#begin('/Users/dameleon/.cache/dein')
 call dein#add('/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " 機能系
+call dein#add('Shougo/ddc.vim')
+call dein#add('vim-denops/denops.vim')
+let g:denops_disable_version_check = 1
 call dein#add('LeafCage/yankround.vim')
-call dein#add('Shougo/neocomplete')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ctrlpvim/ctrlp.vim')
