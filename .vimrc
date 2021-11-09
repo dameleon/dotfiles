@@ -5,44 +5,48 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+" Required:
 set runtimepath+=/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('/Users/dameleon/.cache/dein')
-  call dein#begin('/Users/dameleon/.cache/dein')
+" Required:
+call dein#begin('/Users/dameleon/.cache/dein')
 
-  " 機能系
-  call dein#add('LeafCage/yankround.vim')
-  call dein#add('Shougo/neocomplete')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('flazz/vim-colorschemes')
-  call dein#add('haya14busa/incsearch.vim')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('junegunn/vim-easy-align')
-  call dein#add('kana/vim-submode')
-  call dein#add('mileszs/ack.vim')
-  call dein#add('vim-scripts/netrw.vim')
-  call dein#add('osyo-manga/vim-over')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('scrooloose/syntastic')
-  call dein#add('vim-scripts/sudo.vim')
-  call dein#add('thinca/vim-localrc')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-surround')
-  call dein#add('nixprime/cpsm')
-  " filetype共通
-  call dein#add('sheerun/vim-polyglot')
-  call dein#add('hail2u/vim-css3-syntax')
-  call dein#add('mattn/emmet-vim')
-  call dein#add('vim-scripts/rest.vim')
-  " filetype別
+" Let dein manage dein
+" Required:
+call dein#add('/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#end()
-  call dein#save_state()
-endif
+" 機能系
+call dein#add('LeafCage/yankround.vim')
+call dein#add('Shougo/neocomplete')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('haya14busa/incsearch.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('kana/vim-submode')
+call dein#add('mileszs/ack.vim')
+call dein#add('vim-scripts/netrw.vim')
+call dein#add('osyo-manga/vim-over')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('scrooloose/syntastic')
+call dein#add('vim-scripts/sudo.vim')
+call dein#add('thinca/vim-localrc')
+call dein#add('thinca/vim-quickrun')
+call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-surround')
+call dein#add('nixprime/cpsm')
+" filetype共通
+call dein#add('sheerun/vim-polyglot')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('mattn/emmet-vim')
+call dein#add('vim-scripts/rest.vim')
+" filetype別
+
+call dein#end()
+call dein#save_state()
 
 filetype plugin indent on
 syntax enable
