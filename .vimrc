@@ -6,14 +6,14 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('/Users/dameleon/.cache/dein')
+call dein#begin($HOME . '/.cache/dein')
 
 " Let dein manage dein
 " Required:
-call dein#add('/Users/dameleon/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add($HOME . '/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " 機能系
 call dein#add('Shougo/ddc.vim')
