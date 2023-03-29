@@ -1,0 +1,26 @@
+{
+  "title": "escape [left_control + j]",
+  "rules": [
+    {
+      "description": "escape [left_control + j]",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
