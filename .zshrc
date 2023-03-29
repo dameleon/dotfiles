@@ -123,6 +123,9 @@ alias ackvim=peco-ack-vim
 # Other Settings
 # ------------------------------
 
+### ignore git completion
+zstyle ':completion:*:*' ignored-patterns '*ORIG_HEAD'
+
 ### simplehttpserver
 alias simplehttpd='python -m SimpleHTTPServer 8080'
 
