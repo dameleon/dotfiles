@@ -116,6 +116,8 @@ bindkey '^\' peco-cdr
 bindkey '^m' ls-git
 bindkey '^g' peco-git-branch-checkout
 bindkey '^p' peco-ghq-src
+bindkey '^x' peco-hangouts
+bindkey '^x.' peco-hangouts-here
 alias ackvim=peco-ack-vim
 
 
@@ -146,14 +148,6 @@ PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
 
 
 ### Functions ###
-function alc() {
-  if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +37
-  else
-    w3m "http://www.alc.co.jp/"
-  fi
-}
-
 function settitle() {
     printf "\033k$1\033\\"
 }
@@ -162,3 +156,4 @@ function ssh() {
 	settitle "$*"
 	command ssh "$@"
 }
+
