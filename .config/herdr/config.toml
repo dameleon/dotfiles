@@ -1,0 +1,52 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+
+[keys]
+prefix = "ctrl+t"
+
+# tmux 由来
+next_tab = "prefix+t"
+previous_tab = "prefix+b"
+new_tab = "prefix+n"
+split_horizontal = "prefix+s"
+split_vertical = "prefix+v"
+close_pane = "prefix+x"
+copy_mode = ["prefix+y", "prefix+["]
+edit_scrollback = "prefix+shift+e"
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+last_pane = "prefix+semicolon"
+
+# tmux とぶつかった herdr のデフォルトを退避
+toggle_sidebar = "prefix+shift+b"
+settings = "prefix+comma"
+
+# workspace / agent 移動
+next_workspace = "prefix+ctrl+j"
+previous_workspace = "prefix+ctrl+k"
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+
+# tmux の break-pane 相当: 現在のペインを新しいタブへ移す
+[[keys.command]]
+key = "prefix+e"
+type = "shell"
+command = 'herdr pane move "$HERDR_ACTIVE_PANE_ID" --new-tab --focus'
+description = "break pane"
+
+[ui]
+accent = "cyan"
+prompt_new_tab_name = false
+tab_bar_right = [
+  { type = "datetime", format = "%H:%M:%S %b %m/%d/%y" },
+]
+
+[ui.toast]
+delivery = "system"
+
+[experimental]
+switch_ascii_input_source_in_prefix = true
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex", "cursor", "copilot"]

@@ -27,5 +27,14 @@ for nvimfile in $NVIM_FILES; do
     ln -s $PWD/$nvimfile $HOME/$nvimfile
 done
 
+# herdr
+mkdir -p $HOME/.config/herdr
+HERDR_CONFIG=.config/herdr/config.toml
+if [ -e $HOME/$HERDR_CONFIG ]; then
+    echo "File $HOME/$HERDR_CONFIG already exists. Skipping..."
+else
+    ln -s $PWD/$HERDR_CONFIG $HOME/$HERDR_CONFIG
+fi
+
 set +e
 
