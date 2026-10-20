@@ -8,7 +8,7 @@ DOT_FILES=(.tmux.conf .zshrc .ideavimrc .zsh)
 
 for dotfile in ${DOT_FILES[@]}; do
     filepath=$HOME/$dotfile
-    if [ -e $filepath ]; then
+    if [ -e $filepath ] || [ -L $filepath ]; then
         echo "File $filepath already exists. Skipping..."
         continue
     fi
@@ -20,7 +20,7 @@ mkdir -p $HOME/.config/nvim
 NVIM_FILES=$(find .config/nvim -regex ".*\.\vim")
 for nvimfile in $NVIM_FILES; do
     filepath=$HOME/$nvimfile
-    if [ -e $filepath ]; then
+    if [ -e $filepath ] || [ -L $filepath ]; then
         echo "File $filepath already exists. Skipping..."
         continue
     fi
@@ -30,7 +30,7 @@ done
 # herdr
 mkdir -p $HOME/.config/herdr
 HERDR_CONFIG=.config/herdr/config.toml
-if [ -e $HOME/$HERDR_CONFIG ]; then
+if [ -e $HOME/$HERDR_CONFIG ] || [ -L $HOME/$HERDR_CONFIG ]; then
     echo "File $HOME/$HERDR_CONFIG already exists. Skipping..."
 else
     ln -s $PWD/$HERDR_CONFIG $HOME/$HERDR_CONFIG
